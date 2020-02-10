@@ -12,7 +12,7 @@ This project provides the deep-learning framework for a Generalized loss functio
 Install Tensorflow  
 https://www.tensorflow.org/install  
 
-# Instruction for Use  
+# Instruction for Use (Review only) 
 **Data availability**  
 The lung and liver tumor datasets are publicly available at https://medicaldecathlon.com and https://competitions.codalab.org/competitions/17094, respectively.  
 
