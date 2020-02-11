@@ -128,391 +128,391 @@ def run_training():
               
       feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 0.6, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value}
 
-      for lindex in range(1,1):
+      for lindex in range(1,2):
           alpha_p_valu_keep = alpha_p_value
           alpha_n_valu_keep = alpha_n_value
           beta_sq_valu_keep = beta_sq_value
           
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.0
           alpha_n_value = alpha_n_valu_keep* 1.0
           beta_sq_value = beta_sq_valu_keep* 1.0
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result1,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me1 = ((batch_Y-np.squeeze(temp_result1))**2).mean(axis=None)
           
-          _, temp_result1 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error1 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result1))
-          me1 = tf.reduce_mean(ms_error1)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.1
           alpha_n_value = alpha_n_valu_keep* 1.0
           beta_sq_value = beta_sq_valu_keep* 1.0
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result2,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me2 = ((batch_Y-np.squeeze(temp_result2))**2).mean(axis=None)
           
-          _, temp_result2 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error2 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result2))
-          me2 = tf.reduce_mean(ms_error2)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.0
           alpha_n_value = alpha_n_valu_keep* 1.1
           beta_sq_value = beta_sq_valu_keep* 1.0
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result3,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me3 = ((batch_Y-np.squeeze(temp_result3))**2).mean(axis=None)
           
-          _, temp_result3 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error3 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result3))
-          me3 = tf.reduce_mean(ms_error3)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.0
           alpha_n_value = alpha_n_valu_keep* 1.0
           beta_sq_value = beta_sq_valu_keep* 1.1
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result4,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me4 = ((batch_Y-np.squeeze(temp_result4))**2).mean(axis=None)
           
-          _, temp_result4 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error4 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result4))
-          me4 = tf.reduce_mean(ms_error4)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.1
           alpha_n_value = alpha_n_valu_keep* 1.1
-          beta_sq_value = beta_sq_valu_keep* 1.0
-          
-          _, temp_result5 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error5 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result5))
-          me5 = tf.reduce_mean(ms_error5)
+          beta_sq_value = beta_sq_valu_keep* 1.0          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result5,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me5 = ((batch_Y-np.squeeze(temp_result5))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.1
           alpha_n_value = alpha_n_valu_keep* 1.0
-          beta_sq_value = beta_sq_valu_keep* 1.1
-          
-          _, temp_result6 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error6 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result6))
-          me6 = tf.reduce_mean(ms_error6)
+          beta_sq_value = beta_sq_valu_keep* 1.1          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result6,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me6 = ((batch_Y-np.squeeze(temp_result6))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.0
           alpha_n_value = alpha_n_valu_keep* 1.1
-          beta_sq_value = beta_sq_valu_keep* 1.1
-          
-          _, temp_result7 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error7 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result7))
-          me7 = tf.reduce_mean(ms_error7)
+          beta_sq_value = beta_sq_valu_keep* 1.1          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result7,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me7 = ((batch_Y-np.squeeze(temp_result7))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 0.9
           alpha_n_value = alpha_n_valu_keep* 1.0
-          beta_sq_value = beta_sq_valu_keep* 1.0
+          beta_sq_value = beta_sq_valu_keep* 1.0          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result8,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me8 = ((batch_Y-np.squeeze(temp_result8))**2).mean(axis=None)
           
-          _, temp_result8 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error8 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result8))
-          me8 = tf.reduce_mean(ms_error8)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.0
           alpha_n_value = alpha_n_valu_keep* 0.9
-          beta_sq_value = beta_sq_valu_keep* 1.0
+          beta_sq_value = beta_sq_valu_keep* 1.0          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result9,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me9 = ((batch_Y-np.squeeze(temp_result9))**2).mean(axis=None)
           
-          _, temp_result9 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error9 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result9))
-          me9 = tf.reduce_mean(ms_error9)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.0
           alpha_n_value = alpha_n_valu_keep* 1.0
-          beta_sq_value = beta_sq_valu_keep* 0.9
+          beta_sq_value = beta_sq_valu_keep* 0.9          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result10,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me10 = ((batch_Y-np.squeeze(temp_result10))**2).mean(axis=None)
           
-          _, temp_result10 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error10 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result10))
-          me10 = tf.reduce_mean(ms_error10)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.1
           alpha_n_value = alpha_n_valu_keep* 1.1
-          beta_sq_value = beta_sq_valu_keep* 0.9
+          beta_sq_value = beta_sq_valu_keep* 0.9          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result11,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me11 = ((batch_Y-np.squeeze(temp_result11))**2).mean(axis=None)
           
-          _, temp_result11 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error11 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result11))
-          me11 = tf.reduce_mean(ms_error11)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 0.9
           alpha_n_value = alpha_n_valu_keep* 0.9
-          beta_sq_value = beta_sq_valu_keep* 1.0
+          beta_sq_value = beta_sq_valu_keep* 1.0          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result12,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me12 = ((batch_Y-np.squeeze(temp_result12))**2).mean(axis=None)
           
-          _, temp_result12 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error12 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result12))
-          me12 = tf.reduce_mean(ms_error12)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 0.9
           alpha_n_value = alpha_n_valu_keep* 1.0
-          beta_sq_value = beta_sq_valu_keep* 0.9
+          beta_sq_value = beta_sq_valu_keep* 0.9          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result13,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me13 = ((batch_Y-np.squeeze(temp_result13))**2).mean(axis=None)
           
-          _, temp_result13 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error13 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result13))
-          me13 = tf.reduce_mean(ms_error13)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.0
           alpha_n_value = alpha_n_valu_keep* 0.9
-          beta_sq_value = beta_sq_valu_keep* 0.9
-          
-          _, temp_result14 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error14 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result14))
-          me14 = tf.reduce_mean(ms_error14)
+          beta_sq_value = beta_sq_valu_keep* 0.9          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result14,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me14 = ((batch_Y-np.squeeze(temp_result14))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.1
           alpha_n_value = alpha_n_valu_keep* 1.0
-          beta_sq_value = beta_sq_valu_keep* 0.9
+          beta_sq_value = beta_sq_valu_keep* 0.9          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result15,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me15 = ((batch_Y-np.squeeze(temp_result15))**2).mean(axis=None)
           
-          _, temp_result15 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error15 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result15))
-          me15 = tf.reduce_mean(ms_error15)
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.0
           alpha_n_value = alpha_n_valu_keep* 1.1
-          beta_sq_value = beta_sq_valu_keep* 0.9
-          
-          _, temp_result16 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error16 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result16))
-          me16 = tf.reduce_mean(ms_error16)
+          beta_sq_value = beta_sq_valu_keep* 0.9          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result16,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me16 = ((batch_Y-np.squeeze(temp_result16))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.0
           alpha_n_value = alpha_n_valu_keep* 0.9
-          beta_sq_value = beta_sq_valu_keep* 1.1
-          
-          _, temp_result17 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error17 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result17))
-          me17 = tf.reduce_mean(ms_error17)
+          beta_sq_value = beta_sq_valu_keep* 1.1          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result17,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me17 = ((batch_Y-np.squeeze(temp_result17))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 0.9
           alpha_n_value = alpha_n_valu_keep* 1.0
-          beta_sq_value = beta_sq_valu_keep* 1.1
-          
-          _, temp_result18 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error18 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result18))
-          me18 = tf.reduce_mean(ms_error18)
+          beta_sq_value = beta_sq_valu_keep* 1.1          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result18,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me18 = ((batch_Y-np.squeeze(temp_result18))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.1
           alpha_n_value = alpha_n_valu_keep* 0.9
-          beta_sq_value = beta_sq_valu_keep* 1.0
-          
-          _, temp_result19 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error19 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result19))
-          me19 = tf.reduce_mean(ms_error19)
+          beta_sq_value = beta_sq_valu_keep* 1.0          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result19,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me19 = ((batch_Y-np.squeeze(temp_result19))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 0.9
           alpha_n_value = alpha_n_valu_keep* 1.1
-          beta_sq_value = beta_sq_valu_keep* 1.0
-          
-          _, temp_result20 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error20 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result20))
-          me20 = tf.reduce_mean(ms_error20)
+          beta_sq_value = beta_sq_valu_keep* 1.0          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result20,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me20 = ((batch_Y-np.squeeze(temp_result20))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.1
           alpha_n_value = alpha_n_valu_keep* 1.1
-          beta_sq_value = beta_sq_valu_keep* 1.1
-          
-          _, temp_result21 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error21 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result21))
-          me21 = tf.reduce_mean(ms_error21)
+          beta_sq_value = beta_sq_valu_keep* 1.1          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result21,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me21 = ((batch_Y-np.squeeze(temp_result21))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.1
           alpha_n_value = alpha_n_valu_keep* 0.9
-          beta_sq_value = beta_sq_valu_keep* 1.1
-          
-          _, temp_result22 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error22 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result22))
-          me22 = tf.reduce_mean(ms_error22)
+          beta_sq_value = beta_sq_valu_keep* 1.1          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result22,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me22 = ((batch_Y-np.squeeze(temp_result22))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 0.9
           alpha_n_value = alpha_n_valu_keep* 1.1
-          beta_sq_value = beta_sq_valu_keep* 1.1
-          
-          _, temp_result23 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error23 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result23))
-          me23 = tf.reduce_mean(ms_error23)
+          beta_sq_value = beta_sq_valu_keep* 1.1          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result23,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me23 = ((batch_Y-np.squeeze(temp_result23))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 1.1
           alpha_n_value = alpha_n_valu_keep* 0.9
-          beta_sq_value = beta_sq_valu_keep* 0.9
-          
-          _, temp_result24 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error24 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result24))
-          me24 = tf.reduce_mean(ms_error24)
+          beta_sq_value = beta_sq_valu_keep* 0.9          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result24,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me24 = ((batch_Y-np.squeeze(temp_result24))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 0.9
           alpha_n_value = alpha_n_valu_keep* 1.1
-          beta_sq_value = beta_sq_valu_keep* 0.9
-          
-          _, temp_result25 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error25 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result25))
-          me25 = tf.reduce_mean(ms_error25)
+          beta_sq_value = beta_sq_valu_keep* 0.9          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result25,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me25 = ((batch_Y-np.squeeze(temp_result25))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 0.9
           alpha_n_value = alpha_n_valu_keep* 0.9
-          beta_sq_value = beta_sq_valu_keep* 1.1
-          
-          _, temp_result26 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error26 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result26))
-          me26 = tf.reduce_mean(ms_error26)
+          beta_sq_value = beta_sq_valu_keep* 1.1          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result26,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me26 = ((batch_Y-np.squeeze(temp_result26))**2).mean(axis=None)
+
           ##
-          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
           alpha_p_value = alpha_p_valu_keep* 0.9
           alpha_n_value = alpha_n_valu_keep* 0.9
-          beta_sq_value = beta_sq_valu_keep* 0.9
-          
-          _, temp_result27 = sess.run([train_op, logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
-          ms_error27 = tf.losses.mean_squared_error(tf.squeeze(batch_Y), tf.squeeze(temp_result27))
-          me27 = tf.reduce_mean(ms_error27)
+          beta_sq_value = beta_sq_valu_keep* 0.9          
+          feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
+          temp_result27,_,_,_ = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
+          me27 = ((batch_Y-np.squeeze(temp_result27))**2).mean(axis=None)
+
           ##
           
-          me_mat = [me1, me2, me3, me4, me5, me6, me7, me8, mr9, me10, me11, me12, me13, me14, me15, me16, me17, me18, me19, me20, me21, me22, me23, me24, me25, me26, me27]
-          if tf.argmin(me_mat) == 0:
+          me_mat = [me1, me2, me3, me4, me5, me6, me7, me8, me9, me10, me11, me12, me13, me14, me15, me16, me17, me18, me19, me20, me21, me22, me23, me24, me25, me26, me27]
+          if np.argmin(me_mat) == 0:
              alpha_p_value = alpha_p_valu_keep* 1.0
              alpha_n_value = alpha_n_valu_keep* 1.0
              beta_sq_value = beta_sq_valu_keep* 1.0
+             print('1')
           
-          elif tf.armin(me_mat) == 1:
+          elif np.argmin(me_mat) == 1:
              alpha_p_value = alpha_p_valu_keep* 1.1
              alpha_n_value = alpha_n_valu_keep* 1.0
              beta_sq_value = beta_sq_valu_keep* 1.0
+             print('2')
           
-          elif tf.armin(me_mat) == 2:
+          elif np.argmin(me_mat) == 2:
              alpha_p_value = alpha_p_valu_keep* 1.0
              alpha_n_value = alpha_n_valu_keep* 1.1
              beta_sq_value = beta_sq_valu_keep* 1.0
+             print('3')
           
-          elif tf.armin(me_mat) == 3:
+          elif np.argmin(me_mat) == 3:
              alpha_p_value = alpha_p_valu_keep* 1.0
              alpha_n_value = alpha_n_valu_keep* 1.0
              beta_sq_value = beta_sq_valu_keep* 1.1
+             print('4')
           
-          elif tf.armin(me_mat) == 4:
+          elif np.argmin(me_mat) == 4:
              alpha_p_value = alpha_p_valu_keep* 1.1
              alpha_n_value = alpha_n_valu_keep* 1.1
              beta_sq_value = beta_sq_valu_keep* 1.0
+             print('5')
           
-          elif tf.armin(me_mat) == 5:
+          elif np.argmin(me_mat) == 5:
              alpha_p_value = alpha_p_valu_keep* 1.1
              alpha_n_value = alpha_n_valu_keep* 1.0
              beta_sq_value = beta_sq_valu_keep* 1.1
+             print('6')
           
-          elif tf.armin(me_mat) == 6:
+          elif np.argmin(me_mat) == 6:
              alpha_p_value = alpha_p_valu_keep* 1.0
              alpha_n_value = alpha_n_valu_keep* 1.1
              beta_sq_value = beta_sq_valu_keep* 1.1
+             print('7')
           
-          elif tf.armin(me_mat) == 7:
+          elif np.argmin(me_mat) == 7:
              alpha_p_value = alpha_p_valu_keep* 0.9
              alpha_n_value = alpha_n_valu_keep* 1.0
              beta_sq_value = beta_sq_valu_keep* 1.0
+             print('8')
           
-          elif tf.armin(me_mat) == 8:
+          elif np.argmin(me_mat) == 8:
              alpha_p_value = alpha_p_valu_keep* 1.0
              alpha_n_value = alpha_n_valu_keep* 0.9
              beta_sq_value = beta_sq_valu_keep* 1.0
+             print('9')
           
-          elif tf.armin(me_mat) == 9:
+          elif np.argmin(me_mat) == 9:
              alpha_p_value = alpha_p_valu_keep* 1.0
              alpha_n_value = alpha_n_valu_keep* 1.0
              beta_sq_value = beta_sq_valu_keep* 0.9
+             print('10')
           
-          elif tf.armin(me_mat) == 10:
+          elif np.argmin(me_mat) == 10:
              alpha_p_value = alpha_p_valu_keep* 1.1
              alpha_n_value = alpha_n_valu_keep* 1.1
              beta_sq_value = beta_sq_valu_keep* 0.9
+             print('11')
           
-          elif tf.armin(me_mat) == 11:
+          elif np.argmin(me_mat) == 11:
              alpha_p_value = alpha_p_valu_keep* 0.9
              alpha_n_value = alpha_n_valu_keep* 0.9
              beta_sq_value = beta_sq_valu_keep* 1.0
+             print('12')
           
-          elif tf.armin(me_mat) == 12:
+          elif np.argmin(me_mat) == 12:
              alpha_p_value = alpha_p_valu_keep* 0.9
              alpha_n_value = alpha_n_valu_keep* 1.0
              beta_sq_value = beta_sq_valu_keep* 0.9
+             print('13')
           
-          elif tf.armin(me_mat) == 13:
+          elif np.argmin(me_mat) == 13:
              alpha_p_value = alpha_p_valu_keep* 1.0
              alpha_n_value = alpha_n_valu_keep* 0.9
              beta_sq_value = beta_sq_valu_keep* 0.9
+             print('14')
           
-          elif tf.armin(me_mat) == 14:
+          elif np.argmin(me_mat) == 14:
              alpha_p_value = alpha_p_valu_keep* 1.1
              alpha_n_value = alpha_n_valu_keep* 1.0
              beta_sq_value = beta_sq_valu_keep* 0.9
+             print('15')
           
-          elif tf.armin(me_mat) == 15:
+          elif np.argmin(me_mat) == 15:
              alpha_p_value = alpha_p_value_keep* 1.0
              alpha_n_value = alpha_n_value_keep* 1.1
              beta_sq_value = beta_sq_value_keep* 0.9
+             print('16')
           
-          elif tf.armin(me_mat) == 16:
+          elif np.argmin(me_mat) == 16:
              alpha_p_value = alpha_p_valu_keep* 1.0
              alpha_n_value = alpha_n_valu_keep* 0.9
              beta_sq_value = beta_sq_valu_keep* 1.1
+             print('17')
           
-          elif tf.armin(me_mat) == 17:
+          elif np.argmin(me_mat) == 17:
              alpha_p_value = alpha_p_valu_keep* 0.9
              alpha_n_value = alpha_n_valu_keep* 1.0
              beta_sq_value = beta_sq_valu_keep* 1.1
+             print('18')
           
-          elif tf.armin(me_mat) == 18:
+          elif np.argmin(me_mat) == 18:
              alpha_p_value = alpha_p_valu_keep* 1.1
              alpha_n_value = alpha_n_valu_keep* 0.9
              beta_sq_value = beta_sq_valu_keep* 1.0
+             print('19')
           
-          elif tf.armin(me_mat) == 19:
+          elif np.argmin(me_mat) == 19:
              alpha_p_value = alpha_p_valu_keep* 0.9
              alpha_n_value = alpha_n_valu_keep* 1.1
              beta_sq_value = beta_sq_valu_keep* 1.0
+             print('20')
           
-          elif tf.armin(me_mat) == 20:
+          elif np.argmin(me_mat) == 20:
              alpha_p_value = alpha_p_valu_keep* 1.1
              alpha_n_value = alpha_n_valu_keep* 1.1
              beta_sq_value = beta_sq_valu_keep* 1.1
+             print('21')
           
-          elif tf.armin(me_mat) == 21:
+          elif np.argmin(me_mat) == 21:
              alpha_p_value = alpha_p_valu_keep* 1.1
              alpha_n_value = alpha_n_valu_keep* 0.9
              beta_sq_value = beta_sq_valu_keep* 1.1
+             print('22')
           
-          elif tf.armin(me_mat) == 22:
+          elif np.argmin(me_mat) == 22:
              alpha_p_value = alpha_p_valu_keep* 0.9
              alpha_n_value = alpha_n_valu_keep* 1.1
              beta_sq_value = beta_sq_valu_keep* 1.1
+             print('23')
           
-          elif tf.armin(me_mat) == 23:
+          elif np.argmin(me_mat) == 23:
              alpha_p_value = alpha_p_valu_keep* 1.1
              alpha_n_value = alpha_n_valu_keep* 0.9
              beta_sq_value = beta_sq_valu_keep* 0.9
+             print('24')
           
-          elif tf.armin(me_mat) == 24:
+          elif np.argmin(me_mat) == 24:
              alpha_p_value = alpha_p_valu_keep* 0.9
              alpha_n_value = alpha_n_valu_keep* 1.1
              beta_sq_value = beta_sq_valu_keep* 0.9
+             print('25')
           
-          elif tf.armin(me_mat) == 25:
+          elif np.argmin(me_mat) == 25:
              alpha_p_value = alpha_p_valu_keep* 0.9
              alpha_n_value = alpha_n_valu_keep* 0.9
              beta_sq_value = beta_sq_valu_keep* 1.1
+             print('26')
           
           else:
              alpha_p_value = alpha_p_valu_keep* 0.9
              alpha_n_value = alpha_n_valu_keep* 0.9
              beta_sq_value = beta_sq_valu_keep* 0.9
+             print('27')
           
 
       feed_dict = {images_placeholder: batch_X, labels_placeholder: batch_Y, keep_prob: 0.6, phase_train: True, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value}
@@ -523,13 +523,13 @@ def run_training():
       duration = time.time() - start_time    
     
 
-      if (step + 1) % 5 == 0:
+      if (step + 1) % 1 == 0:
          checkpoint_file = os.path.join(FLAGS.log_dir, 'model.ckpt')
          saver.save(sess, checkpoint_file, global_step=step)
          print('%%%% save the model paramters ... ')
          print('Step %d: loss = %.7f (%.3f sec)' % (step, loss_value, duration))
         
-      if (step + 1) % 5 == 0:
+      if (step + 1) % 1 == 0:
          feed_dict = {images_placeholder: X_test, labels_placeholder: Y_test, keep_prob: 1.0, phase_train: False, alpha_p: alpha_p_value, alpha_n: alpha_n_value, beta_sq: beta_sq_value} 
          Test_results = sess.run([logits, updated_alpha_p, updated_alpha_n, updated_beta_sq], feed_dict=feed_dict)
                   
