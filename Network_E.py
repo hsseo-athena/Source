@@ -11,7 +11,7 @@ import numpy as np
 
 initializer = tf.contrib.layers.xavier_initializer_conv2d()
 
-
+#Network start
 def deepnn(images, image_size, batch_size, keep_prob, phase_train):
   """Build the mU-Net for prediction
   """
@@ -133,7 +133,7 @@ def deepnn(images, image_size, batch_size, keep_prob, phase_train):
   
   
   return y_out
-
+#Network end
 
        
     
