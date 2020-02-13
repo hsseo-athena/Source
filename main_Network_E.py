@@ -443,9 +443,9 @@ def run_training():
              print('15')
           
           elif np.argmin(me_mat) == 15:
-             alpha_p_value = alpha_p_value_keep* 1.0
-             alpha_n_value = alpha_n_value_keep* 1.1
-             beta_sq_value = beta_sq_value_keep* 0.9
+             alpha_p_value = alpha_p_valu_keep* 1.0
+             alpha_n_value = alpha_n_valu_keep* 1.1
+             beta_sq_value = beta_sq_valu_keep* 0.9
              print('16')
           
           elif np.argmin(me_mat) == 16:
@@ -508,7 +508,7 @@ def run_training():
              beta_sq_value = beta_sq_valu_keep* 1.1
              print('26')
           
-          else:
+          elif np.argmin(me_mat == 26):
              alpha_p_value = alpha_p_valu_keep* 0.9
              alpha_n_value = alpha_n_valu_keep* 0.9
              beta_sq_value = beta_sq_valu_keep* 0.9
